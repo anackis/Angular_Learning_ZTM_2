@@ -62,7 +62,12 @@ export class RegisterComponent {
         email as string, password as string
       )
 
-      
+      await this.db.collection('users').add({
+        name: this.registerForm.value.name,
+        email: this.registerForm.value.email,
+        age: this.registerForm.value.age,
+        phoneNumber: this.registerForm.value.phoneNumber,
+      })
     }catch(e) {
       console.log(e)
       // this.showAlert = true
