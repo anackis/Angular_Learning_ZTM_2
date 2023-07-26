@@ -2,6 +2,11 @@
 
 
 
+<app-alert *ngIf="showAlert" [color]="alertColor">
+  {{ alertMsg }}
+</app-alert>
+
+
 <!-- Login Form -->
 <form #loginForm="ngForm" (ngSubmit)="login()">
   <!-- Email -->
@@ -16,6 +21,7 @@
         duration-500 focus:outline-none rounded bg-transparent
         focus:border-indigo-400"
       placeholder="Enter Email" 
+      autocomplete="eamil"
       required
       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
       />
@@ -35,6 +41,7 @@
       [(ngModel)]="credentials.password"
       name="password"
       type="password"
+      autocomplete="current-password"
       required
       class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
       duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
@@ -47,7 +54,7 @@
     Password is invalid.
   </p>
   <button 
-    [disabled]="loginForm.invalid"
+    [disabled]="loginForm.invalid || inSubmission"
     type="submit"
     class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition
       hover:bg-indigo-500 disabled:opacity-50 disabled:bg-indigo-400"
