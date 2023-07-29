@@ -4,6 +4,7 @@
 
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 
 @Component({
