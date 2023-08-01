@@ -10,6 +10,7 @@ import { v4 as uuid } from 'uuid';
 import { last, switchMap } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat';
+import { serverTimestamp } from '@angular/fire/firestore';
 import { ClipService } from 'src/app/services/clip.service';
 import { Router } from '@angular/router';
 
@@ -106,6 +107,7 @@ export class UploadComponent implements OnDestroy {
             title: this.title.value,
             fileName: `${clipFileName}.mp4`,
             url,
+            timestamp: serverTimestamp()
           }
 
           const clipDocRef = await this.clipsService.createClip(clip)
@@ -117,7 +119,9 @@ export class UploadComponent implements OnDestroy {
           this.showPercentage = false
 
           setTimeout(() => {
-
+            this.router.navigate([
+              'clip', clipDocRef.id
+            ])
           }, 1000)
         },
         error: (error) => {
