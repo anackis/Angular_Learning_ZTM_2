@@ -3,15 +3,15 @@
 
 <!-- Clips List -->
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-  <a 
-    *ngFor="let clip of clipService.pageClips" 
+  <a
+    *ngFor="let clip of clipService.pageClips"
     [routerLink]="['/', 'clip', clip.docID]"
-    class="mt-6 rounded-tl-2xl rounded-br-2xl shadow-xl bg-secondary transform hover:-translate-y-2 hover:shadow-2xl transition duration-300"
+    class="mt-6 rounded-2xl shadow-xl bg-secondary transform hover:-translate-y-2 hover:shadow-2xl transition duration-300"
   >
 
     <!-- Image -->
-    <img 
-      class="card-img-top rounded-tl-2xl w-full" 
+    <img
+      class="card-img-top rounded-tl-2xl rounded-tr-2xl w-full"
       [src]="clip.screenshotURL" crossorigin
     >
 
@@ -37,7 +37,7 @@
 
       <!-- Name & Date -->
       <p class="mb-0">
-        {{ clip.displayName }} &#183; 
+        {{ clip.displayName }} &#183;
         <span class="text-gray-400">
           {{ clip.timestamp | fbTimestamp }}
         </span>

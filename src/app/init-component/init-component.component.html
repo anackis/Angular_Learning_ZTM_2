@@ -1,0 +1,15 @@
+<div class="init">
+  <div class="init-container">
+
+    <h1 *ngIf="!isAuthenticated; else loggedInBlock">You are not logged in!</h1>
+    <h2 *ngIf="!isAuthenticated">Please log in to use CLIPIT</h2>
+    <button *ngIf="!isAuthenticated" (click)="login()">Login</button>
+
+    <ng-template #loggedInBlock>
+      <h1>You are logged in!</h1>
+      <h2>Go to the Home page.</h2>
+      <button (click)="goToHome()">Home</button>
+    </ng-template>
+
+  </div>
+</div>

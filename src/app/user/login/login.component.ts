@@ -2,6 +2,7 @@
 
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,8 +13,8 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 export class LoginComponent {
   credentials = {
-    email: '',
-    password: ''
+    email: 'test@inbox.lv',
+    password: 'testtest1'
   }
   showAlert = false
   alertMsg = 'Please wait! We are logging you in.'
@@ -21,7 +22,8 @@ export class LoginComponent {
   inSubmission = false
 
   constructor(
-    private auth:AngularFireAuth
+    private auth:AngularFireAuth,
+    private router: Router,
   ) {}
 
   async login() {
@@ -46,6 +48,7 @@ export class LoginComponent {
 
     this.alertMsg = 'Success! You are now logged in.'
     this.alertColor = 'green'
+    this.router.navigate(['/home']);
   }
 
 }

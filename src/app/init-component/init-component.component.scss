@@ -1,0 +1,38 @@
+.init {
+  min-width: 30%;
+  position: absolute;
+  background-color: #283046;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 25px 60px;
+  border-radius: 12px;
+  &-container {
+    text-align: center;
+    h1 {
+      font-weight: 700;
+      font-size: 2rem;
+    }
+    h2 {
+      margin-top: 10px;
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+    button {
+      height: 50px;
+      width: 50%;
+      margin: 25px 0px 15px 0px;
+      background-color: #818CF8;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+    }
+    button:hover {
+      background-color: #6366F1;
+    }
+    button:active {
+      background-color: #423CFF;
+    }
+  }
+}

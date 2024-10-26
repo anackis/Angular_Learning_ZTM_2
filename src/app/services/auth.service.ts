@@ -1,21 +1,19 @@
-
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth'; 
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import IUser from '../models/user.model';
 import { Observable, delay, map, filter, switchMap, of } from 'rxjs';
 import { Router } from '@angular/router';
-import { ActivatedRoute, NavigationEnd } from '@angular/router'; 
-
+import { ActivatedRoute, NavigationEnd } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
-  private usersCollection: AngularFirestoreCollection<IUser> 
+  private usersCollection: AngularFirestoreCollection<IUser>
   public isAuthenticated$: Observable<boolean>
-  public isAuthenticatedWithDeleay$: Observable<boolean> 
+  public isAuthenticatedWithDeleay$: Observable<boolean>
   public redirect = false
 
   constructor(
@@ -54,7 +52,7 @@ export class AuthService {
       throw new Error("User can not be found!")
     }
 
-    // await this.db.collection<IUser>('users').add({               // We ceated ref not to reply code in future. 
+    // await this.db.collection<IUser>('users').add({               // We ceated ref not to reply code in future.
     await this.usersCollection.doc(userCred.user.uid).set({        // Replacing add with doc and set.
       name: userData.name,
       email: userData.email,
@@ -72,7 +70,7 @@ export class AuthService {
     if($event) {
       $event.preventDefault()
     }
-    
+
     await this.auth.signOut()
 
     if (this.redirect) {

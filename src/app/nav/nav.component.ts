@@ -3,22 +3,17 @@ import { ModalService } from '../services/modal.service';
 import { AuthService } from '../services/auth.service';
 
 
-
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
 })
 export class NavComponent {
-  // isAuthenticated = false
+  currentLanguage: string = 'en';
 
   constructor(
     public modal: ModalService,
     public auth: AuthService,
-  ) {
-    // this.auth.isAuthenticated$.subscribe(status => {
-    //   this.isAuthenticated = status
-    // })
-  }
+  ) {}
 
   openModal($event: Event) {
     $event.preventDefault()
@@ -26,6 +21,8 @@ export class NavComponent {
     this.modal.toggleModal('auth')
   }
 
-  
+  toggleLanguage() {
+    this.currentLanguage = this.currentLanguage === 'en' ? 'lv' : 'en';
+  }
 
 }

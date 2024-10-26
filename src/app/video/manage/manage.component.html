@@ -4,14 +4,15 @@
 
 
 <!-- Top Bar -->
-<section class="container mx-auto my-8 bg-secondary p-6">
+<section style="border-radius: 12px;" class="container mx-auto my-8 bg-secondary p-6">
   <div class="rounded relative flex justify-between">
-    <a routerLink="/upload" class="bg-indigo-400 text-white py-4 px-10 text-xl">
+    <a style="border-radius: 12px;" routerLink="/upload" class="bg-indigo-400 text-white py-4 px-10 text-xl">
       Upload Videos
     </a>
-    
+
     <!-- Sort Videos -->
-    <select 
+    <select
+      style="border-radius: 12px;"
       (change)="sort($event)"
       class="text-black px-8 text-xl outline-none appearance-none"
     >
@@ -28,18 +29,29 @@
     <div *ngFor="let clip of clips"  class="mt-6 rounded-tl-2xl rounded-br-2xl shadow-xl bg-secondary flex flex-col justify-start">
 
       <!-- Image -->
-      <a href="#">
-        <img class="card-img-top rounded-tl-2xl w-full" src="assets/img/1.jpg">
-      </a>
+      <div  class="cursor-pointer" (click)="navigateToClip(clip.docID)">
+        <img
+          class="card-img-top rounded-tl-2xl w-full"
+          [src]="clip.screenshotURL"
+          crossorigin
+        >
+      </div>
 
       <!-- Body -->
       <div class="p-6 text-2xl">
 
         <!-- Link -->
-        <a href="#" class="font-bold mb-2">
+        <a
+          [routerLink]="['/', 'clip', clip.docID]"
+          class="font-bold mb-2"
+        >
           {{ clip.title }}
         </a>
-        <a href="#" class="bg-gray-400 text-white px-2 py-1 ml-2 text-sm rounded">
+        <a
+          (click)="copyClipboard($event, clip.docID)"
+          href="#"
+          class="bg-gray-400 text-white px-2 py-1 ml-2 text-sm rounded"
+        >
           Copy Link
         </a>
 
@@ -59,7 +71,7 @@
   </div>
 </div>
 
-<app-edit 
+<app-edit
   [activeClip]="activeClip"
   (update)="update($event)"
 ></app-edit>

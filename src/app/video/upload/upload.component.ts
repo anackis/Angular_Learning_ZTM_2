@@ -23,7 +23,7 @@ export class UploadComponent implements OnDestroy {
   isDragover = false
   file: File | null = null
   nextStep = false
-  showAlert = false 
+  showAlert = false
   alertColor = 'blue'
   alertMsg = 'Please wait! Your clip is being uploaded.'
   inSubmission = false
@@ -60,7 +60,7 @@ export class UploadComponent implements OnDestroy {
     // console.log(this.ffmpegService.init());
   }
 
-  
+
 
   ngOnDestroy(): void {
     this.task?.cancel()
@@ -80,7 +80,7 @@ export class UploadComponent implements OnDestroy {
       ($event.target as HTMLInputElement).files?.item(0) ?? null
 
     if(!this.file || this.file.type !== 'video/mp4') {
-      return 
+      return
     }
 
     this.screenshots = await this.ffmpegService.getScreenshots(this.file)
@@ -114,7 +114,7 @@ export class UploadComponent implements OnDestroy {
     const clipRef = this.storage.ref(clipPatch)
 
     this.screenshotTask = this.storage.upload(
-      screenshotPath, 
+      screenshotPath,
       screenshotBlob
     )
     const screenshotRef = this.storage.ref(screenshotPath)
@@ -183,7 +183,7 @@ export class UploadComponent implements OnDestroy {
         }
       }
     )
-    
+
 
   }
 }
